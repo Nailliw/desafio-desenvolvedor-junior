@@ -1,17 +1,12 @@
 const express = require("express");
 const config = require("config");
+const routes = require("./routes/");
 
 const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 const port = 3000;
 
-app.get("/teste", (req, res) => {
-  res.status(200).send({ message: "nice to meet you" });
-});
+routes(app);
 
-app.listen(port, () => console.log("Server is running"));
+app.listen(port, () => console.log(`Server is running on port: ${port}`));
 
 module.exports = app;
