@@ -1,9 +1,13 @@
 const express = require("express");
-const pessoas = require("./pessoasRoute");
+const peoples = require("./peoplesRoute");
+const pets = require("./petsRoutes");
+const services = require("./servicesRoutes");
 
 module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  app.use(pessoas);
+  app.use(peoples);
+  app.use(pets);
+  app.use(services);
 };

@@ -1,10 +1,10 @@
 const database = require("../models");
 
-class PessoaController {
+class PeopleController {
   // lista todas as pessoas
   static async listAll(req, res) {
     try {
-      const allData = await database.Pessoas.findAll();
+      const allData = await database.Peoples.findAll();
       return res.status(200).json(allData);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -14,9 +14,9 @@ class PessoaController {
   // lista pessoa por ID
   static async listById(req, res) {
     try {
-      const data = await database.Pessoas.findOne({
+      const data = await database.Peoples.findOne({
         where: {
-          id: req.params.pessoaID,
+          id: req.params.peopleID,
         },
       });
       return res.status(200).json(data);
@@ -29,7 +29,7 @@ class PessoaController {
   static async createPerson(req, res) {
     const newPerson = req.body;
     try {
-      const data = await database.Pessoas.create(newPerson);
+      const data = await database.Peoples.create(newPerson);
       return res.status(200).json(data);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -41,15 +41,15 @@ class PessoaController {
     const newInfos = req.body;
 
     try {
-      await database.Pessoas.update(newInfos, {
+      await database.Peoples.update(newInfos, {
         where: {
-          id: req.params.pessoaID,
+          id: req.params.peopleID,
         },
       });
 
-      const data = await database.Pessoas.findOne({
+      const data = await database.Peoples.findOne({
         where: {
-          id: req.params.pessoaID,
+          id: req.params.peopleID,
         },
       });
 
@@ -62,21 +62,19 @@ class PessoaController {
   // Deleta pessoa
   static async deletePerson(req, res) {
     try {
-      await database.Pessoas.destroy({
+      await database.Peoples.destroy({
         where: {
-          id: req.params.pessoaID,
+          id: req.params.peopleID,
         },
       });
 
-      return res
-        .status(200)
-        .json({
-          mensage: `Person number ID ${req.params.pessoaID} was destroyed`,
-        });
+      return res.status(200).json({
+        mensage: `Person number ID ${req.params.peopleID} was destroyed`,
+      });
     } catch (error) {
       return res.status(500).json(error.message);
     }
   }
 }
 
-module.exports = PessoaController;
+module.exports = PeopleController;

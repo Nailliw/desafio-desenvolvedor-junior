@@ -23,8 +23,8 @@ module.exports = {
       weight: {
         type: Sequelize.STRING,
       },
-      service: {
-        type: Sequelize.STRING,
+      observations: {
+        type: Sequelize.TEXT,
       },
       people_id: {
         allowNull: false,

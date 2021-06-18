@@ -1,53 +1,55 @@
+"use strict";
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
-      "Pessoas",
+      "Peoples",
       [
         {
-          nome: "Ana Souza",
-          ativo: true,
+          name: "Ana Souza",
+          active: true,
           email: "ana@ana.com",
-          sexo: "feminino",
+          sex: "feminino",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          nome: "Marcos Cintra",
-          ativo: true,
+          name: "Marcos Cintra",
+          active: true,
           email: "marcos@marcos.com",
-          sexo: "masculino",
+          sex: "masculino",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          nome: "Felipe Cardoso",
-          ativo: true,
+          name: "Felipe Cardoso",
+          active: true,
           email: "felipe@felipe.com",
-          sexo: "masculino",
+          sex: "masculino",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          nome: "Sandra Gomes",
-          ativo: false,
+          name: "Sandra Gomes",
+          active: false,
           email: "sandra@sandra.com",
-          sexo: "feminino",
+          sex: "feminino",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          nome: "Paula Morais",
-          ativo: true,
+          name: "Paula Morais",
+          active: true,
           email: "paula@paula.com",
-          sexo: "feminino",
+          sex: "feminino",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          nome: "Sergio Lopes",
-          ativo: true,
+          name: "Sergio Lopes",
+          active: true,
           email: "sergio@sergio.com",
-          sexo: "masculino",
+          sex: "masculino",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -57,6 +59,12 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Pessoas", null, {});
+    /*
+      Add reverting commands here.
+      Return a promise to correctly handle asynchronicity.
+
+      Example:
+      return queryInterface.bulkDelete('People', null, {});
+    */
   },
 };

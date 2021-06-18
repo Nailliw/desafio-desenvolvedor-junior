@@ -8,13 +8,14 @@ module.exports = (sequelize, DataTypes) => {
       race: DataTypes.STRING,
       age: DataTypes.INTEGER,
       weight: DataTypes.STRING,
-      service: DataTypes.STRING,
+      observations: DataTypes.TEXT,
     },
     {}
   );
   Pets.associate = function (models) {
-    Pets.hasMany(models.Pessoas, {
-      foreignKey: "people_id",
+    Pets.hasMany(models.Services, {
+      as: "PetId",
+      foreignKey: "pet_id",
     });
   };
   return Pets;
