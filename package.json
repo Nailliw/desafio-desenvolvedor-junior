@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Nailliw/desafio-desenvolvedor-junior#readme",
   "dependencies": {
+    "bcrypt": "^3.0.8",
     "config": "^3.3.6",
     "express": "^4.17.1",
     "moment": "^2.29.1",

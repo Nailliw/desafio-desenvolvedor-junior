@@ -11,16 +11,16 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      // people_id: {
-      //   allowNull: false,
-      //   type: Sequelize.INTEGER,
-      //   references: { model: "Peoples", key: "id" },
-      // },
-      // pet_id: {
-      //   allowNull: false,
-      //   type: Sequelize.INTEGER,
-      //   references: { model: "Pets", key: "id" },
-      // },
+      people_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Peoples", key: "id" },
+      },
+      pet_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Pets", key: "id" },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -1,4 +1,6 @@
 "use strict";
+const bcrypt = require("bcrypt");
+
 module.exports = (sequelize, DataTypes) => {
   const Peoples = sequelize.define(
     "Peoples",
@@ -7,9 +9,35 @@ module.exports = (sequelize, DataTypes) => {
       active: DataTypes.BOOLEAN,
       sex: DataTypes.STRING,
       email: DataTypes.STRING,
+      password: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
-    {}
+    {
+      // hooks: {
+      //   beforeCreate: (people) => {
+      //     const salt = bcrypt.genSaltSync();
+      //     people.set("password", bcrypt.hashSync(people.password, salt));
+      //   },
+      //   afterUpsert: (people) => {
+      //     const salt = bcrypt.genSaltSync();
+      //     people.set("password", bcrypt.hashSync(people.password, salt));
+      //   },
+      //   beforeBulkCreate: (people) => {
+      //     const salt = bcrypt.genSaltSync();
+      //     people.set("password", bcrypt.hashSync(people.password, salt));
+      //   },
+      // },
+      // classMethods: {
+      //   isPassword: (encondedPassword, password) =>
+      //     bcrypt.compareSync(password, encondedPassword),
+      // },
+    }
   );
+
   Peoples.associate = function (models) {
     Peoples.hasMany(models.Pets, {
       foreignKey: "people_id",
