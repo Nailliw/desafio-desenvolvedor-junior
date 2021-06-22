@@ -12,7 +12,7 @@ module.exports = {
           age: 4,
           weight: "20",
           observations: "",
-          people_id: 1,
+          User_id: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -23,7 +23,7 @@ module.exports = {
           age: 1,
           weight: "10",
           observations: "",
-          people_id: 2,
+          User_id: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -34,7 +34,7 @@ module.exports = {
           age: 2,
           weight: "25",
           observations: "",
-          people_id: 3,
+          User_id: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -45,7 +45,7 @@ module.exports = {
           age: 4,
           weight: "20",
           observations: "",
-          people_id: 4,
+          User_id: 4,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -60,7 +60,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
 
       Example:
-      return queryInterface.bulkDelete('People', null, {});
+      return queryInterface.bulkDelete('User', null, {});
     */
   },
 };

@@ -2,8 +2,8 @@
 const bcrypt = require("bcrypt");
 
 module.exports = (sequelize, DataTypes) => {
-  const Peoples = sequelize.define(
-    "Peoples",
+  const Users = sequelize.define(
+    "Users",
     {
       name: DataTypes.STRING,
       active: DataTypes.BOOLEAN,
@@ -17,18 +17,19 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
+      // Ao dar update a senha volta sem hash, sem tempo para fazer funcionar
       // hooks: {
-      //   beforeCreate: (people) => {
+      //   beforeCreate: (User) => {
       //     const salt = bcrypt.genSaltSync();
-      //     people.set("password", bcrypt.hashSync(people.password, salt));
+      //     User.set("password", bcrypt.hashSync(User.password, salt));
       //   },
-      //   afterUpsert: (people) => {
+      //   afterUpsert: (User) => {
       //     const salt = bcrypt.genSaltSync();
-      //     people.set("password", bcrypt.hashSync(people.password, salt));
+      //     User.set("password", bcrypt.hashSync(User.password, salt));
       //   },
-      //   beforeBulkCreate: (people) => {
+      //   beforeBulkCreate: (User) => {
       //     const salt = bcrypt.genSaltSync();
-      //     people.set("password", bcrypt.hashSync(people.password, salt));
+      //     User.set("password", bcrypt.hashSync(User.password, salt));
       //   },
       // },
       // classMethods: {
@@ -38,15 +39,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Peoples.associate = function (models) {
-    Peoples.hasMany(models.Pets, {
-      foreignKey: "people_id",
+  Users.associate = function (models) {
+    Users.hasMany(models.Pets, {
+      foreignKey: "user_id",
+      onDelete: "cascade",
     });
-    Peoples.hasMany(models.Services, {
-      foreignKey: "people_id",
+    Users.hasMany(models.Services, {
+      foreignKey: "user_id",
+      onDelete: "cascade",
     });
   };
-  return Peoples;
+  return Users;
 };
 // utilizando sequelize e sequelize-cli em versões mais antigas
 // nas versões atuais a associação das models está com a documentação muito confusa

@@ -8,8 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Services.associate = function (models) {
-    Services.belongsTo(models.Peoples, {
-      foreignKey: "people_id",
+    Services.belongsTo(models.Users, {
+      foreignKey: "user_id",
+    });
+    Services.belongsTo(models.Pets, {
+      foreignKey: "pet_id",
     });
   };
   return Services;

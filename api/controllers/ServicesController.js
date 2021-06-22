@@ -3,7 +3,16 @@ const database = require("../models");
 class ServicesController {
   static async listAll(req, res) {
     try {
-      const allData = await database.Services.findAll();
+      const allData = await database.Services.findAll({
+        include: [
+          {
+            model: database.Users,
+          },
+          {
+            model: database.Pets,
+          },
+        ],
+      });
       return res.status(200).json(allData);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -16,6 +25,14 @@ class ServicesController {
         where: {
           id: req.params.serviceID,
         },
+        include: [
+          {
+            model: database.Users,
+          },
+          {
+            model: database.Pets,
+          },
+        ],
       });
       return res.status(200).json(data);
     } catch (error) {

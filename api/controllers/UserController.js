@@ -1,10 +1,36 @@
 const database = require("../models");
+const jwt = require("jsonwebtoken");
 
-class PeopleController {
+class UserController {
+  static async login(req, res) {
+    return res.status(200).json({ message: "login successful" });
+  }
+  static async searchEmail(email, password) {
+    const User = await database.Users.findOne({
+      where: {
+        email: email,
+        password: password,
+      },
+    });
+    if (!User) {
+      return null;
+    }
+    return User.dataValues;
+  }
+
   // lista todas as pessoas
   static async listAll(req, res) {
     try {
-      const allData = await database.Peoples.findAll();
+      const allData = await database.Users.findAll({
+        include: [
+          {
+            model: database.Pets,
+          },
+          {
+            model: database.Services,
+          },
+        ],
+      });
       return res.status(200).json(allData);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -14,9 +40,9 @@ class PeopleController {
   // lista pessoa por ID
   static async listById(req, res) {
     try {
-      const data = await database.Peoples.findOne({
+      const data = await database.Users.findOne({
         where: {
-          id: req.params.peopleID,
+          id: req.params.UserID,
         },
       });
       return res.status(200).json(data);
@@ -29,7 +55,7 @@ class PeopleController {
   static async createPerson(req, res) {
     const newPerson = req.body;
     try {
-      const data = await database.Peoples.create(newPerson);
+      const data = await database.Users.create(newPerson);
       return res.status(200).json(data);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -41,15 +67,15 @@ class PeopleController {
     const newInfos = req.body;
 
     try {
-      await database.Peoples.update(newInfos, {
+      await database.Users.update(newInfos, {
         where: {
-          id: req.params.peopleID,
+          id: req.params.UserID,
         },
       });
 
-      const data = await database.Peoples.findOne({
+      const data = await database.Users.findOne({
         where: {
-          id: req.params.peopleID,
+          id: req.params.UserID,
         },
       });
 
@@ -62,14 +88,14 @@ class PeopleController {
   // Deleta pessoa
   static async deletePerson(req, res) {
     try {
-      await database.Peoples.destroy({
+      await database.Users.destroy({
         where: {
-          id: req.params.peopleID,
+          id: req.params.UserID,
         },
       });
 
       return res.status(200).json({
-        mensage: `Person number ID ${req.params.peopleID} was destroyed`,
+        mensage: `Person number ID ${req.params.UserID} was destroyed`,
       });
     } catch (error) {
       return res.status(500).json(error.message);
@@ -77,4 +103,4 @@ class PeopleController {
   }
 }
 
-module.exports = PeopleController;
+module.exports = UserController;

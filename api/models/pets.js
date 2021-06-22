@@ -13,8 +13,12 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Pets.associate = function (models) {
+    Pets.belongsTo(models.Users, {
+      foreignKey: "user_id",
+    });
     Pets.hasMany(models.Services, {
       foreignKey: "pet_id",
+      onDelete: "cascade",
     });
   };
   return Pets;

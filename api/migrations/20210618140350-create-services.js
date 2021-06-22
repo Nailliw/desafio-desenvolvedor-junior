@@ -11,10 +11,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      people_id: {
+      user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: "Peoples", key: "id" },
+        references: { model: "Users", key: "id" },
       },
       pet_id: {
         allowNull: false,

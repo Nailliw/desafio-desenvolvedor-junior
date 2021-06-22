@@ -26,10 +26,10 @@ module.exports = {
       observations: {
         type: Sequelize.TEXT,
       },
-      people_id: {
+      user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: "Peoples", key: "id" },
+        references: { model: "Users", key: "id" },
       },
       createdAt: {
         allowNull: false,
